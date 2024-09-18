@@ -1,0 +1,31 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #f0f0f0;
+    font-family: Arial, sans-serif;
+}
+
+.loading {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #333;
+}
+
+.dot {
+    animation: blink 1.5s infinite step-start;
+    margin: 0 5px;
+}
+
+@keyframes blink {
+    0% {
+        opacity: 0;
+    }
+    33% {
+        opacity: 1;
+    }
+    66% {
+        opacity: 0;
+    }
+}

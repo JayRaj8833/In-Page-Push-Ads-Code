@@ -1,0 +1,81 @@
+<style> 
+/* Floating ad container styles */
+.floating-ads-container {
+  position: fixed; /* Fixed position to stay on screen */
+  top: 0; /* Start from the top */
+  left: 0; /* Start from the left */
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  z-index: 999; /* Ensure it's above other elements */
+  backdrop-filter: blur(5px); /* Blurs the background for emphasis */
+  display: none; /* Initially hidden to avoid intrusive experience */
+}
+
+/* Wrapper for the ad content */
+.floating-ads-wrap {
+  position: absolute; /* Absolute position within the container */
+  top: 50%; /* Center vertically */
+  left: 50%; /* Center horizontally */
+  transform: translate(-50%, -50%); /* Translate to exact center */
+  text-align: center; /* Center-align the content */
+  z-index: 1; /* Keep the wrapper on top */
+}
+
+/* Ad display block at the bottom */
+.floating-ads-bottom-ad {
+  display: block; /* Display as block */
+  position: relative; /* Relative position within the wrap */
+}
+
+/* Close button styles */
+.floating-ads-bottom-close {
+  position: absolute; /* Position at the bottom of the ad */
+  bottom: -20px; /* Offset from the bottom */
+  display: block; /* Display block */
+  font-size: 15px; /* Font size for the close button */
+  font-weight: 700; /* Bold font */
+  text-decoration: none; /* Remove underline from text */
+  border-radius: 50%; /* Make the button circular */
+  cursor: pointer; /* Show pointer on hover */
+  text-align: center; /* Center the text */
+  height: 20px; /* Button height */
+  width: 20px; /* Button width */
+  line-height: 18px; /* Line height to center the text */
+  background-color: #ddd; /* Light grey background */
+  z-index: 5; /* Ensure the button is above the ad */
+  color: #FF0000!important; /* Red color for the "X" */
+  right: 1px; /* Align close to the right */
+}
+</style>
+
+<div class="floating-ads-container" id="floatingAd">
+  <div class="floating-ads-wrap">
+    <div class="floating-ads-bottom-ad">
+      <span></span>
+      <!-- Ad code -->      
+      <!-- Insert your ad code here -->
+
+      <!-- End Ad code -->
+      <div class="floating-ads-bottom-close">
+        <a class="floating-ads-bottom-textcss-x" href="#" onclick="closeAd()">X</a> <!-- "X" close button -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Show the ad after a few seconds
+  setTimeout(() => {
+    document.getElementById('floatingAd').style.display = 'block'; // Display ad after 2 seconds
+  }, 2000); // 2 seconds delay
+
+  // Close the ad function
+  function closeAd() {
+    document.getElementById('floatingAd').style.display = 'none'; // Hide the ad when close is clicked
+  }
+
+  // Close the ad 5 seconds after a click
+  document.getElementById('floatingAd').addEventListener('click', () => {
+    setTimeout(closeAd, 5000); // Close ad 5 seconds after clicking on it
+  });
+</script>

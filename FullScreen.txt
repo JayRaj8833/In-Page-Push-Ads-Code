@@ -1,0 +1,212 @@
+<style>
+    /* Fullscreen overlay */
+    .ad-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(10, 10, 10, 0.95);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        font-family: 'Arial', sans-serif;
+    }
+
+    /* Ad container without background */
+    .ad-container {
+        position: relative;
+        width: 100%; /* Set to 100% for full-screen width on larger screens */
+        max-width: 1200px; /* Max width for larger screens */
+        text-align: center;
+        padding: 15px;
+        border-radius: 15px;
+        z-index: 1;
+    }
+
+    /* Close button moved above the ad */
+    .close-btn {
+        position: absolute;
+        top: -40px; /* Adjust to move the button above the ad */
+        right: 0;
+        background-color: #ff1744;
+        color: white;
+        border: none;
+        padding: 6px 10px;
+        cursor: pointer;
+        font-size: 12px;
+        border-radius: 5px;
+        box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.2);
+        display: none; /* Initially hidden */
+        transition: background-color 0.3s ease;
+        z-index: 2;
+    }
+
+    .close-btn:hover {
+        background-color: #ff616f;
+    }
+
+    /* Countdown timer with color animation */
+    .countdown {
+        position: absolute;
+        top: 10px;
+        left: 10px;
+        font-size: 14px;
+        color: white;
+        background-color: rgba(0, 0, 0, 0.8);
+        padding: 5px;
+        border-radius: 8px;
+        font-weight: bold;
+        animation: textColorChange 5s infinite alternate;
+        z-index: 1;
+    }
+
+    /* Ad footer remains unchanged */
+    .ad-footer {
+        text-align: right;
+        font-size: 10px;
+        color: white;
+        margin-top: 5px;
+        opacity: 0.8;
+    }
+
+    .ad-footer a {
+        color: white;
+        text-decoration: underline;
+    }
+
+    .ad-footer a:hover {
+        color: #ff1744;
+    }
+
+    /* Countdown text color animation */
+    @keyframes textColorChange {
+        0% {
+            color: white;
+        }
+        25% {
+            color: #ff616f;
+        }
+        50% {
+            color: #f6d365;
+        }
+        75% {
+            color: #fda085;
+        }
+        100% {
+            color: #ff1744;
+        }
+    }
+
+    /* Responsive design for smaller devices */
+    @media (max-width: 1200px) {
+        .ad-container {
+            width: 90vw;
+            max-width: 1100px;
+        }
+    }
+
+    @media (max-width: 768px) {
+        .ad-container {
+            width: 85vw;
+            max-width: 600px;
+        }
+
+        .close-btn {
+            font-size: 11px;
+            padding: 5px 8px;
+        }
+
+        .countdown {
+            font-size: 13px;
+            padding: 4px;
+        }
+
+        .ad-footer {
+            font-size: 9px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .ad-container {
+            width: 80vw;
+            max-width: 350px;
+        }
+
+        .close-btn {
+            font-size: 10px;
+            padding: 4px 6px;
+        }
+
+        .countdown {
+            font-size: 12px;
+            padding: 3px;
+        }
+
+        .ad-footer {
+            font-size: 8px;
+        }
+    }
+
+    @media (max-width: 320px) {
+        .ad-container {
+            width: 75vw;
+            max-width: 280px;
+        }
+
+        .close-btn {
+            font-size: 9px;
+            padding: 3px 5px;
+        }
+
+        .countdown {
+            font-size: 10px;
+            padding: 3px;
+        }
+
+        .ad-footer {
+            font-size: 7px;
+        }
+    }
+</style>
+
+<div class="ad-overlay" id="adOverlay">
+    <div class="countdown" id="countdown">10 Second Please Wait</div>
+    <div class="ad-container">
+        <button class="close-btn" id="closeBtn" onclick="closeAd()">Close</button>
+        <center>
+
+<!-- Your ad code -->
+
+
+
+<!-- Your ad code -->
+      </center>
+    </div>
+</div>
+
+<script>
+    let countdownElement = document.getElementById("countdown");
+    let closeBtn = document.getElementById("closeBtn");
+    let adOverlay = document.getElementById("adOverlay");
+    let countdown = 10;  // 10 seconds countdown
+
+    // Timer to show countdown
+    let timer = setInterval(function () {
+        countdown--;
+        countdownElement.textContent = countdown + " Second Please Wait";
+
+        // Show close button when countdown reaches 0
+        if (countdown <= 0) {
+            clearInterval(timer);
+            countdownElement.style.display = "none";
+            closeBtn.style.display = "block";  // Show the close button
+        }
+    }, 1000);
+
+    // Function to close the ad
+    function closeAd() {
+        adOverlay.style.display = "none";
+    }
+</script>

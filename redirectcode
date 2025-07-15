@@ -1,0 +1,38 @@
+<?php
+if (!empty($_POST['ref'])) {
+} else {
+    $ref = $_SERVER['HTTP_REFERER'] ?? ''; 
+    $do = parse_url($ref);
+    $refer = $do['host'] ?? ''; 
+
+    $allowedReferers = ["blog.jankaritech.in"];
+    if (in_array($refer, $allowedReferers)) {
+    } else {
+        $userAgent = $_SERVER['HTTP_USER_AGENT'] ?? '';
+        $locations = [
+            
+            "https://blog.jankaritech.in/token.php?id=$link->alias",
+            
+            
+            
+        ];
+
+        $randomLocation = $locations[array_rand($locations)];
+
+        $parsedUrl = parse_url($randomLocation);
+        $host = $parsedUrl['host'] ?? '';
+        $path = $parsedUrl['path'] ?? '';
+        $query = isset($parsedUrl['query']) ? '?' . $parsedUrl['query'] : '';
+        $intentUrl = "intent://$host$path$query#Intent;scheme=https;package=com.android.chrome;end";
+
+        if (stripos($userAgent, 'Android') !== false) {
+            header("Location: $intentUrl", true, 307);
+        } elseif (preg_match('/iPad|iPhone|iPod/', $userAgent)) {
+            header("Location: $randomLocation", true, 307);
+        } else {
+            header("Location: $randomLocation", true, 307);
+        }
+        exit();
+    }
+}
+?>
